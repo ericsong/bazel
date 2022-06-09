@@ -12,15 +12,20 @@ py_binary(
 )
 
 py_binary(
-    name = "run_bin",
-    srcs = ["run_bin.py"],
-    data = [":bin"],
+    name = "grandchild",
+    srcs = ["grandchild.py"],
 )
 
 py_binary(
-    name = "run_bin_2",
-    srcs = ["run_bin_2.py"],
-    data = [":run_bin"],
+    name = "child",
+    srcs = ["child.py"],
+    data = [":grandchild"],
+)
+
+py_binary(
+    name = "parent",
+    srcs = ["parent.py"],
+    data = [":child"],
 )
 
 filegroup(
